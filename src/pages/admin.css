@@ -1,0 +1,11 @@
+.admin-bg {
+  background: linear-gradient(to right, #dbeafe, #bfdbfe); /* lighter blue gradient */
+  min-height: 100vh;
+  padding-top: 20px;
+}
+
+.admin-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}

@@ -1,0 +1,49 @@
+.auth-container {
+  max-width: 400px;
+  margin: 60px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.auth-container h2 {
+  margin-bottom: 20px;
+  color: #3b82f6;
+  text-align: center;
+  font-size: 32px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.auth-container a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.auth-container a:hover {
+  text-decoration: underline;
+}
+
+.auth-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  align-items: center;
+  text-align: center;
+}
+
+.auth-tabs button {
+  flex: 1;
+  padding: 10px;
+  background-color: #e0e7ff;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px 5px 0 0;
+  
+}
+
+.auth-tabs button.active {
+  background-color: #3b82f6;
+  color: white;
+}

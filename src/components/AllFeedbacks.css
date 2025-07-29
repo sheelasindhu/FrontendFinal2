@@ -1,0 +1,58 @@
+.all-feedback-container {
+  background: linear-gradient(to right, #e0f2fe, #bfdbfe); /* blue gradient */
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.all-feedback-container h3 {
+  margin-bottom: 20px;
+  color: #1e3a8a;
+  text-align: center;
+}
+
+.all-feedback-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.all-feedback-table th,
+.all-feedback-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+.all-feedback-table th {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.all-feedback-table tr:hover {
+  background-color: #f1f5f9;
+}
+
+.export-btn {
+  background-color: #2563eb;
+  color: white;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.export-btn:hover {
+  background-color: #1d4ed8;
+}
+
+.empty-message {
+  font-style: italic;
+  text-align: center;
+  color: #555;
+  padding: 10px;
+}

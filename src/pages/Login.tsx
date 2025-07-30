@@ -5,24 +5,12 @@ import axios from '../utils/axios'; // Axios instance with baseURL and token sup
 import './Auth.css';
 
 const Login = () => {
-  const [role, setRole] = useState<'user' | 'admin'>('user');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
-      if (role === 'admin') {
-        // Static admin credentials
-        if (email === 'admin@smart.com' && password === 'admin123') {
-          navigate('/admin');
-        } else {
-          alert('Invalid admin credentials');
-        }
-        return;
-      }
-
-      // Call backend for user login
       const response = await axios.post('/Auth/login', {
         email,
         password
@@ -30,15 +18,20 @@ const Login = () => {
 
       const { token, user } = response.data;
 
-      // Store token in localStorage
+      // Store token and user info
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
 
-      // Navigate to dashboard
-      navigate('/dashboard');
+      // Redirect based on role
+      if (user.role === 'Admin') {
+        navigate('/admin');
+      } else {
+        navigate('/dashboard');
+      }
+
     } catch (error: any) {
       if (error.response?.status === 401) {
-        alert('Invalid user credentials');
+        alert('Invalid credentials');
       } else {
         alert('Login failed. Please try again later.');
       }
@@ -48,10 +41,6 @@ const Login = () => {
   return (
     <div className="auth-container">
       <h2>Login</h2>
-      <div>
-        <button onClick={() => setRole('user')} style={{ marginRight: 10 }}>User</button>
-        <button onClick={() => setRole('admin')}>Admin</button>
-      </div>
       <input
         type="email"
         placeholder="Email"
@@ -64,8 +53,8 @@ const Login = () => {
         onChange={(e) => setPassword(e.target.value)}
         value={password}
       />
-      <button onClick={handleLogin}>Login as {role}</button>
-      {role === 'user' && <p>New user? <a href="/register">Register</a></p>}
+      <button onClick={handleLogin}>Login</button>
+      <p>New user? <a href="/register">Register</a></p>
     </div>
   );
 };

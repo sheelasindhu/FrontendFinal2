@@ -1,66 +1,19 @@
-// components/AllFeedback.tsx
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+// pages/AdminDashboard.tsx
+import React, { useState } from 'react';
+import AdminNavbar from '../components/AdminNavbar';
+import AllFeedbacks from '../components/AllFeedback';
+import Analytics from '../components/Analytics'; // Create this if not already
 
-interface Feedback {
-  id: number;
-  category: string;
-  content: string;
-  rating: number;
-  userId: number;
-  createdAt: string;
-}
-
-const AllFeedbacks = () => {
-  const [feedbacks, setFeedbacks] = useState<Feedback[]>([]);
-
-  useEffect(() => {
-    const fetchFeedbacks = async () => {
-      const token = localStorage.getItem('token');
-      try {
-        const response = await axios.get('http://localhost:5285/api/feedback/all', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setFeedbacks(response.data);
-      } catch (error) {
-        console.error('Failed to fetch feedbacks', error);
-      }
-    };
-
-    fetchFeedbacks();
-  }, []);
+const AdminDashboard = () => {
+  const [view, setView] = useState<'all' | 'analytics'>('all');
 
   return (
     <div>
-      <h3>All Feedbacks</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Category</th>
-            <th>Content</th>
-            <th>Rating</th>
-            <th>User</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {feedbacks.map((f) => (
-            <tr key={f.id}>
-              <td>{f.id}</td>
-              <td>{f.category}</td>
-              <td>{f.content}</td>
-              <td>{f.rating}</td>
-              <td>{f.userId}</td>
-              <td>{new Date(f.createdAt).toLocaleString()}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <AdminNavbar onNavigate={setView} />
+      {view === 'all' && <AllFeedbacks />}
+      {view === 'analytics' && <Analytics />}
     </div>
   );
 };
 
-export default AllFeedbacks;
+export default AdminDashboard;

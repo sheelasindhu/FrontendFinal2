@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './AllFeedbacks.css';
 
-type Feedback = {
+interface Feedback {
   id: number;
   category: string;
   content: string;
   rating: number;
+  user: string;
   createdAt: string;
-};
+}
 
-const AllFeedbacks: React.FC = () => {
+const AllFeedbacks = () => {
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([]);
 
   useEffect(() => {
     const fetchFeedbacks = async () => {
+      const token = localStorage.getItem('token');
       try {
-        const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5285/api/feedback/all', {
+        const response = await axios.get('http://localhost:5285/api/feedback', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
         setFeedbacks(response.data);
       } catch (error) {
-        console.error('Failed to fetch feedbacks:', error);
+        console.error('Failed to fetch feedbacks', error);
       }
     };
 
@@ -32,34 +32,41 @@ const AllFeedbacks: React.FC = () => {
   }, []);
 
   return (
-    <div className="history-container">
-      <h3>All Submitted Feedbacks</h3>
-      {feedbacks.length === 0 ? (
-        <p className="empty-message">No feedbacks available.</p>
-      ) : (
-        <table className="history-table">
-          <thead>
-            <tr>
-              <th>Category</th>
-              <th>Feedback</th>
-              <th>Rating</th>
-              <th>Date</th>
+  <div className="all-feedback-container">
+    <h3>All Feedbacks</h3>
+    {/* <button className="export-btn">Export CSV</button> */}
+
+    {feedbacks.length === 0 ? (
+      <p className="empty-message">No feedbacks available.</p>
+    ) : (
+      <table className="all-feedback-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Category</th>
+            <th>Content</th>
+            <th>Rating</th>
+            <th>User</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {feedbacks.map((f) => (
+            <tr key={f.id}>
+              <td>{f.id}</td>
+              <td>{f.category}</td>
+              <td>{f.content}</td>
+              <td>{f.rating}</td>
+              <td>{f.user || "Unknown"}</td>
+              <td>{new Date(f.createdAt).toLocaleString()}</td>
             </tr>
-          </thead>
-          <tbody>
-            {feedbacks.map((f) => (
-              <tr key={f.id}>
-                <td>{f.category}</td>
-                <td>{f.content}</td>
-                <td>{f.rating} ★</td>
-                <td>{new Date(f.createdAt).toLocaleDateString()}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-    </div>
-  );
+          ))}
+        </tbody>
+      </table>
+    )}
+  </div>
+);
+
 };
 
 export default AllFeedbacks;

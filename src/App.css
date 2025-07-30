@@ -77,3 +77,73 @@ button:hover {
   color: #555;
   padding: 10px;
 }
+
+
+.all-feedback-container {
+  background: linear-gradient(to right, #e0f2fe, #bfdbfe);
+  padding: 30px;
+  border-radius: 12px;
+  margin: 40px auto;
+  width: 95%;
+  max-width: 1200px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.all-feedback-container h3 {
+  margin-bottom: 20px;
+  color: #1e3a8a;
+  text-align: center;
+  font-size: 24px;
+  letter-spacing: 1px;
+}
+
+.export-btn {
+  background-color: #2563eb;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  margin: 0 auto 20px;
+  display: block;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.export-btn:hover {
+  background-color: #1d4ed8;
+}
+
+.all-feedback-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.all-feedback-table th,
+.all-feedback-table td {
+  padding: 14px 18px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 15px;
+}
+
+.all-feedback-table th {
+  background-color: #3b82f6;
+  color: white;
+  font-weight: 600;
+}
+
+.all-feedback-table tr:hover {
+  background-color: #f9fafb;
+  transition: background-color 0.3s ease;
+}
+
+.empty-message {
+  text-align: center;
+  font-style: italic;
+  color: #6b7280;
+  padding: 16px;
+}

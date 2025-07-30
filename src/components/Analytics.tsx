@@ -11,6 +11,7 @@ type Feedback = {
   content: string;
   rating: number;
   createdAt: string;
+  user: string;
 };
 
 const Analytics: React.FC = () => {
@@ -20,7 +21,7 @@ const Analytics: React.FC = () => {
     const fetchAllFeedback = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:5285/api/feedback/all', {
+        const res = await axios.get('http://localhost:5285/api/feedback', {
           headers: {
             Authorization: `Bearer ${token}`,
           },

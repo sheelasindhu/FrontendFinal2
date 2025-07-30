@@ -16,7 +16,7 @@ const FeedbackHistory: React.FC = () => {
     const fetchUserFeedback = async () => {
       const token = localStorage.getItem('token');
       try {
-        const res = await axios.get('http://localhost:5285/api/feedback/user', {
+        const res = await axios.get('http://localhost:5285/api/feedback/my', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
